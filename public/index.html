@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Alijigock Manager</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="app" class="app">
+        <h1>Alijigock</h1>
+        <div class="screen loading-screen" v-if="mode === 'loading'">
+            <p>now loading...</p>
+        </div>
+        <div class="screen login-screen" v-if="mode === 'login'">
+            <form method="post" action="/auth">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="screen setting-screen" v-if="mode === 'setting'">
+            <div class="notice" :class="{'is-ok': status === 'ok', 'is-error': status === 'error'}">
+                <span v-if="status === 'ok'">saved</span>
+                <span v-if="status === 'error'">error</span>
+            </div>
+            <div class="card">
+                <h2>Setup is complete !</h2>
+                <ol>
+                    <li>invite alijigock_bot to channel</li>
+                    <li>enjoy slacking :)</li>
+                </ol>
+            </div>
+            <div class="card">
+                <div class="setting-item">
+                    <h2>Start Message</h2>
+                    <input type="text" v-model="messageStart" maxlength="60">
+                </div>
+                <div class="setting-item">
+                    <h2>Invite Message</h2>
+                    <input type="text" v-model="messageTraitor" maxlength="60">
+                    <p class="hint">
+                        `&lt;USER_NAME&gt;` replace to `@user_name`
+                    </p>
+                </div>
+                <button @click="onClickSave" :disabled="status === 'loading'">Save</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.7/vue.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>

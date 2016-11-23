@@ -1,0 +1,19 @@
+AllCops:
+  Exclude:
+    - tmp/**/*
+    - vendor/**/*
+
+AsciiComments:
+  Enabled: false
+Documentation:
+  Enabled: false
+DoubleNegation:
+  Enabled: false
+Lambda:
+  Enabled: false
+LineLength:
+  Max: 120
+MultilineBlockChain:
+  Enabled: false
+
+inherit_from: .rubocop_todo.yml
